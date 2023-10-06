@@ -1,3 +1,4 @@
+'use client'
 import { Roboto, Roboto_Flex } from 'next/font/google'
 
 type headerProps = {}
