@@ -25,7 +25,12 @@ export default function Card({
       className={`shadow-3xl flex flex-col w-[20.5rem] md:w-[16.5625rem] rounded-md overflow-hidden  ${roboto.className}`}
     >
       <div className="w-[20.5rem] md:w-[16.5625rem] relative h-[12.375rem] md:h-40 self-stretch">
-        <Image src={src} alt={alt} fill={true} />
+        <Image
+          src={src}
+          alt={alt || name + ' flag'}
+          fill={true}
+          sizes="(min-width: 769px) 16.5625rem, (max-width: 768px) 20.5rem"
+        />
       </div>
 
       <div className="px-6 pt-7 pb-11 flex flex-col gap-5 font-bold leading-normal">

@@ -6,20 +6,27 @@ import SearchInput from '@/components/SearchInput'
 import SelectInput from '@/components/SelectInput'
 import CardList from '@/components/CardList'
 import { countriesType } from '@/types/countriesData'
+import { notFoundCountryType } from '@/types/notFoundCountryType'
 
 const apiURL = process.env.NEXT_PUBLIC_API_URL
 
 export default function Home() {
   const [inputText, setInputText] = useState('')
   const [select, setSelect] = useState('')
-  const [countriesList, setCountriesList] = useState<countriesType[] | []>([])
+  const [countriesList, setCountriesList] = useState<
+    countriesType[] | notFoundCountryType
+  >()
 
   useEffect(() => {
     async function loadCountries() {
-      const url = inputText ? apiURL + 'name/' + inputText : apiURL + 'all'
-      const response = await fetch(url)
-      const data = await response.json()
-      setCountriesList(data)
+      try {
+        const url = inputText ? apiURL + 'name/' + inputText : apiURL + 'all'
+        const response = await fetch(url)
+        const data = await response.json()
+        setCountriesList(data)
+      } catch (error) {
+        console.log()
+      }
     }
     loadCountries()
   }, [inputText])
@@ -31,9 +38,9 @@ export default function Home() {
         <SelectInput select={select} setSelect={setSelect} />
       </div>
       <CardList
-        countries={countriesList.filter(({ region }) =>
-          select ? select === region : true,
-        )}
+        countries={countriesList}
+        filter={select}
+        searchText={inputText}
       />
     </main>
   )

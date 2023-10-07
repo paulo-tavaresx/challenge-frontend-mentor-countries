@@ -1,15 +1,30 @@
 import { countriesType } from '@/types/countriesData'
+import { notFoundCountryType } from '@/types/notFoundCountryType'
 import Card from './Card'
+import { isArray } from 'util'
 
-type Props = {
-  countries: countriesType[]
+interface CardListProps {
+  countries: notFoundCountryType | countriesType[] | undefined
+  filter: string
+  searchText: string
 }
 
-export default function CardList({ countries }: Props) {
+export default function CardList({
+  countries,
+  filter,
+  searchText,
+}: CardListProps) {
+  if (!countries) return
+  if (countries && !isArray(countries)) {
+    return <h1> Country not found {searchText} </h1>
+  }
+  const filtered = countries.filter(({ region }) => {
+    return filter ? region === filter : true
+  })
   return (
     <div className="flex flex-col items-center justify-center md:flex-row flex-wrap md:gap-[4.5rem] gap-12">
-      {countries.length > 0 &&
-        countries.map(({ flags, capital, population, region, name }, index) => {
+      {filtered.length > 0 &&
+        filtered.map(({ flags, capital, population, region, name }, index) => {
           return (
             <Card
               name={name.common}
