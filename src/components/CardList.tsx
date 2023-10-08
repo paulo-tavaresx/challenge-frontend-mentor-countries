@@ -2,6 +2,7 @@ import { countriesType } from '@/types/countriesData'
 import { notFoundCountryType } from '@/types/notFoundCountryType'
 import Card from './Card'
 import { isArray } from 'util'
+import Link from 'next/link'
 
 interface CardListProps {
   countries: notFoundCountryType | countriesType[] | undefined
@@ -26,15 +27,16 @@ export default function CardList({
       {filtered.length > 0 &&
         filtered.map(({ flags, capital, population, region, name }, index) => {
           return (
-            <Card
-              name={name.common}
-              region={region}
-              population={population}
-              capital={capital}
-              src={flags.png}
-              alt={flags.alt}
-              key={index}
-            />
+            <Link href={`/country/${name.common}`} key={index}>
+              <Card
+                name={name.common}
+                region={region}
+                population={population}
+                capital={capital}
+                src={flags.png}
+                alt={flags.alt}
+              />
+            </Link>
           )
         })}
     </div>
