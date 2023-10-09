@@ -48,7 +48,7 @@ export default function Page({ params }: CountryProps) {
         Back
       </Link>
 
-      <div className="mt-[4.5rem] md:mt-20 ">
+      <div className="mt-[4.5rem] md:mt-20 flex flex-col md:flex-row gap-y-[4.5rem] md:items-center md:justify-between">
         <div className="relative w-[25rem] md:w-[34.6875rem]  h-[16.75rem] md:h-[25rem] self-stretch">
           <Image
             src={countryData[0].flags.png}
@@ -58,6 +58,20 @@ export default function Page({ params }: CountryProps) {
             fill={true}
             sizes="(min-width: 769px) 34.6875rem, (max-width: 768px) 25rem"
           />
+        </div>
+        <div className="flex flex-col gap-y-[3.75rem]">
+          <h2
+            className={`${roboto.className} text-2xl font-extrabold leading-normal`}
+          >
+            {countryData[0].name.common}
+          </h2>
+          <div>
+            <h3>Native Name: {countryData[0].name.official}</h3>
+            <h3>Population: {countryData[0].population}</h3>
+            <h3>Region: {countryData[0].region}</h3>
+            <h3>Sub Region: {countryData[0].subregion}</h3>
+            <h3>Capital: {countryData[0].capital}</h3>
+          </div>
         </div>
       </div>
     </main>

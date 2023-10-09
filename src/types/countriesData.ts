@@ -11,4 +11,5 @@ export type countriesType = {
   population: number
   borders: string[]
   region: string
+  subregion: string
 }

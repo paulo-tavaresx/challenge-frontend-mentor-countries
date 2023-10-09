@@ -27,7 +27,7 @@ export default function CardList({
       {filtered.length > 0 &&
         filtered.map(({ flags, capital, population, region, name }, index) => {
           return (
-            <Link href={`/country/${name.common}`} key={index}>
+            <Link href={`/country/${name.official}`} key={index}>
               <Card
                 name={name.common}
                 region={region}
