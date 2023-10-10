@@ -1,7 +1,6 @@
 import { countriesType } from '@/types/countriesData'
 import { notFoundCountryType } from '@/types/notFoundCountryType'
 import Card from './Card'
-import { isArray } from 'util'
 import Link from 'next/link'
 
 interface CardListProps {
@@ -16,7 +15,7 @@ export default function CardList({
   searchText,
 }: CardListProps) {
   if (!countries) return
-  if (countries && !isArray(countries)) {
+  if (countries && !Array.isArray(countries)) {
     return <h1> Country not found {searchText} </h1>
   }
   const filtered = countries.filter(({ region }) => {
