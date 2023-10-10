@@ -33,7 +33,7 @@ export default function Card({
         />
       </div>
 
-      <div className="px-6 pt-7 pb-11 flex flex-col gap-5 font-bold leading-normal">
+      <div className="px-6 pt-7 dark:bg-[#2B3743]  pb-11 flex flex-col gap-5 font-bold leading-normal">
         <h2 className="text-lg font-bold">{name}</h2>
 
         <div className="flex flex-col gap-2 ">

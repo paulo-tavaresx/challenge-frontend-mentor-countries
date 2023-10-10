@@ -81,17 +81,47 @@ export default function Page({ params }: CountryProps) {
   }
 
   return (
-    <main className="flex min-h-screen flex-col px-5 md:p-20 pt-8  ">
+    <main
+      className={`flex min-h-screen flex-col px-5 md:p-20 py-8  ${roboto.className}`}
+    >
       <Link
         href={'/'}
-        className={`py-2 px-9 shadow-3xl max-w-[8.5rem] rounded-md ${roboto.className}`}
+        className={`py-2 px-9  flex gap-2 shadow-3xl max-w-[8.5rem] rounded-md dark:bg-[#2B3743]  `}
       >
+        <svg
+          className="fill-[#121214] dark:fill-white"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="Arrow / Arrow_Right_LG">
+            <path
+              className="stroke-[#121214] dark:stroke-white"
+              id="Vector"
+              d="M21 12L3 12"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              className="stroke-[#121214] dark:stroke-white"
+              id="Vector_2"
+              d="M8 17L3 12L8 7"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+        </svg>
         Back
       </Link>
 
       <div className="mt-[4.5rem] md:mt-20 flex flex-wrap gap-y-[4.5rem] gap-x-[9.5rem] md:items-center">
         <div className="relative w-[25rem] md:w-[34.6875rem]  h-[16.75rem] md:h-[25rem]">
           <Image
+            priority
             src={countryData[0].flags.png}
             alt={
               countryData[0].flags.alt || countryData[0].name.common + ' flag'
@@ -108,37 +138,60 @@ export default function Page({ params }: CountryProps) {
           </h2>
           <div className="flex flex-wrap gap-[3.75rem] justify-between">
             <div>
-              <h3>Native Name: {countryData[0].name.official}</h3>
-              <h3>Population: {countryData[0].population}</h3>
-              <h3>Region: {countryData[0].region}</h3>
-              <h3>Sub Region: {countryData[0].subregion}</h3>
-              <h3>Capital: {countryData[0].capital}</h3>
+              <p>
+                <span className="font-medium">Native Name: </span>
+                {countryData[0].name.official}
+              </p>
+              <p>
+                <span className="font-medium">Population: </span>
+                {countryData[0].population}
+              </p>
+              <p>
+                <span className="font-medium">Region: </span>
+                {countryData[0].region}
+              </p>
+              <p>
+                <span className="font-medium">Sub Region: </span>
+                {countryData[0].subregion}
+              </p>
+              <p>
+                <span className="font-medium">Capital: </span>
+                {countryData[0].capital}
+              </p>
             </div>
             <div>
-              <h3>Top Level Domain: {countryData[0].tld}</h3>
-              <h3>
-                Currencies:
+              <p>
+                <span className="font-medium">Top Level Domain: </span>
+                {countryData[0].tld}
+              </p>
+              <p>
+                <span className="font-medium">Currencies: </span>
                 {getCountryCurrencies(countryData[0].currencies).join(', ')}
-              </h3>
-              <h3>
-                Languages:{' '}
+              </p>
+              <p>
+                <span className="font-medium">Languages: </span>
                 {getCountryLanguages(countryData[0].languages).join(', ')}
-              </h3>
+              </p>
             </div>
           </div>
-          <div>
-            <h3>Border Countries:</h3>
+          <div className="flex flex-wrap gap-4">
+            <p>
+              <span className="font-medium">Border Countries: </span>
+            </p>
             <span className="flex flex-wrap gap-3">
-              {countryBordersData &&
+              {countryBordersData ? (
                 countryBordersData.map((value, index) => (
                   <Link
-                    className={`${roboto.className} rounded shadow-3xl bg-white/50 w-24 h-7 text-center py-1 text-sm leading-normal font-normal`}
+                    className={`rounded shadow-3xl bg-white/50 dark:bg-[#2B3743]  w-24 h-7 text-center py-1 text-sm leading-normal font-normal`}
                     key={`border-${index}`}
                     href={value.name.common}
                   >
                     {value.name.common}
                   </Link>
-                ))}
+                ))
+              ) : (
+                <p>{"The country don't have borders"}</p>
+              )}
             </span>
           </div>
         </div>

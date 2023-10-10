@@ -7,9 +7,9 @@ type Props = {
 
 export default function SelectInput({ select, setSelect }: Props) {
   return (
-    <label className="flex grow  border-0  max-w-[15.5rem] md:max-w-[12.5rem] shadow-3xl rounded ">
+    <label className="flex grow   border-0  max-w-[15.5rem] md:max-w-[12.5rem] shadow-3xl rounded ">
       <select
-        className="grow pl-6 py-4 pr-3 text-sm leading-normal gap-1 appearance-none bg-arrow focus:outline-0"
+        className="grow pl-6 dark:bg-[#2B3743] py-4 pr-3 text-sm leading-normal gap-1 appearance-none bg-arrow focus:outline-0"
         value={select}
         onChange={({ target }) => setSelect(target.value)}
       >
