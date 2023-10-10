@@ -8,10 +8,3 @@
   background-repeat: no-repeat;
   background-size: 1.5rem 1.5rem;
 }
-
-.bg-arrow {
-  background-image: url('/arrow-down.svg');
-  background-position: right 0.75rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5rem 1.5rem;
-}
